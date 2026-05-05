@@ -38,7 +38,12 @@
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="home">
-    <canvas id="molecularCanvas"></canvas>
+    <!-- Electron orbit decoration -->
+    <div class="orbit-wrap" aria-hidden="true">
+      <div class="orbit orbit-1"><div class="electron"></div></div>
+      <div class="orbit orbit-2"><div class="electron"></div></div>
+      <div class="orbit orbit-3"><div class="electron"></div></div>
+    </div>
     <!-- Floating chemistry element symbols -->
     <div class="chem-elements" aria-hidden="true">
       <span class="chem-el" style="--d:0s;  --x:8%;  --s:1.1">H</span>
@@ -96,7 +101,7 @@
           <div class="avatar-container">
             <div class="avatar-ring"></div>
             <div class="avatar">
-              <img src="profile.jpg" alt="Sumi Siyad" onerror="this.style.display='none';this.parentElement.querySelector('.avatar-fallback').style.display='flex'" />
+              <img src="profile.png" alt="Sumi Siyad" onerror="this.style.display='none';this.parentElement.querySelector('.avatar-fallback').style.display='flex'" />
               <span class="avatar-fallback">SS</span>
             </div>
             <div class="avatar-badge"><i class="fas fa-atom"></i></div>
@@ -160,7 +165,7 @@
         <!-- Entry 1 -->
         <div class="timeline-item fade-in">
           <div class="timeline-dot"><i class="fas fa-water"></i></div>
-          <div class="timeline-card current">
+          <div class="timeline-card">
             <div class="timeline-header">
               <div>
                 <h3>Project Research Fellow</h3>
@@ -168,7 +173,6 @@
               </div>
               <div class="timeline-meta">
                 <span class="timeline-date"><i class="fas fa-calendar-alt"></i> June 2025 – March 2026</span>
-                <span class="timeline-badge current-badge">Current</span>
               </div>
             </div>
             <p class="timeline-supervisor"><i class="fas fa-user-tie"></i> Under Dr. Poulomi Roy</p>

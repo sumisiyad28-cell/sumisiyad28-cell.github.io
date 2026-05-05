@@ -95,11 +95,11 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(section => sectionObserver.observe(section));
 
 /* ==========================================================
-   MOLECULAR CANVAS ANIMATION
+   MOLECULAR CANVAS ANIMATION  (canvas removed from hero)
    ========================================================== */
 (function initCanvas() {
   const canvas = document.getElementById('molecularCanvas');
-  if (!canvas) return;
+  if (!canvas) return; // canvas element no longer in hero HTML
   const ctx = canvas.getContext('2d');
 
   let particles = [];
