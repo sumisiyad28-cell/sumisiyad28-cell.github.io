@@ -111,31 +111,41 @@ sections.forEach(section => sectionObserver.observe(section));
     initParticles();
   }
 
+  // Crimson palette variants for particles
+  const COLORS = [
+    [232, 25,  44],  // vivid crimson
+    [255, 77, 109],  // light crimson
+    [168,  0,  30],  // dark crimson
+    [255,143,163],   // pale pink-red
+  ];
+
   class Particle {
     constructor() { this.reset(true); }
 
     reset(init = false) {
-      this.x  = Math.random() * canvas.width;
-      this.y  = init ? Math.random() * canvas.height : (Math.random() < 0.5 ? -6 : canvas.height + 6);
-      this.vx = (Math.random() - 0.5) * 0.45;
-      this.vy = (Math.random() - 0.5) * 0.45;
-      this.r  = Math.random() * 2.5 + 1.2;
-      this.o  = Math.random() * 0.5 + 0.25;
+      this.x    = Math.random() * canvas.width;
+      this.y    = init ? Math.random() * canvas.height : (Math.random() < 0.5 ? -6 : canvas.height + 6);
+      this.vx   = (Math.random() - 0.5) * 0.45;
+      this.vy   = (Math.random() - 0.5) * 0.45;
+      this.r    = Math.random() * 2.5 + 1.2;
+      this.o    = Math.random() * 0.55 + 0.2;
+      this.col  = COLORS[Math.floor(Math.random() * COLORS.length)];
     }
 
     update() {
       this.x += this.vx;
       this.y += this.vy;
-      if (this.x < -8)                 this.x = canvas.width  + 8;
-      if (this.x > canvas.width  + 8)  this.x = -8;
-      if (this.y < -8)                 this.y = canvas.height + 8;
-      if (this.y > canvas.height + 8)  this.y = -8;
+      if (this.x < -8)                this.x = canvas.width  + 8;
+      if (this.x > canvas.width  + 8) this.x = -8;
+      if (this.y < -8)                this.y = canvas.height + 8;
+      if (this.y > canvas.height + 8) this.y = -8;
     }
 
     draw() {
+      const [r,g,b] = this.col;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(78,205,196,${this.o})`;
+      ctx.fillStyle = `rgba(${r},${g},${b},${this.o})`;
       ctx.fill();
     }
   }
@@ -160,10 +170,11 @@ sections.forEach(section => sectionObserver.observe(section));
         const dy   = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.2;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(78,205,196,${(1 - dist / MAX_DIST) * 0.22})`;
+          ctx.strokeStyle = `rgba(232,25,44,${alpha})`;
           ctx.lineWidth   = 1;
           ctx.stroke();
         }
